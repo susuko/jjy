@@ -32,6 +32,10 @@ static t_jjy_bit calc_parity_jjy_bit(uint8_t bcd0, uint8_t bcd1)
 		: JJY_BIT_0;
 }
 
+// Calculate JJY time code from struct tm.
+// tm: minute-precision time
+// index: seconds index from 0 to 59
+// return: JJY time code per index
 t_jjy_bit get_jjy_bit(struct tm *tm, int index)
 {
 	switch (index)
