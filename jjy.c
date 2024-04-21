@@ -15,11 +15,9 @@ static uint8_t get_bcd(uint16_t bin, int digit)
 	return bin / scale[digit] % 10;
 }
 
-static t_jjy_bit get_jjy_bit_from_bcd(uint8_t bcd, int index, int end_index)
+static t_jjy_bit get_jjy_bit_from_bcd(uint8_t bcd, int bit_index)
 {
-	int bcd_index = end_index - index;
-
-	return bcd & 1 << bcd_index
+	return bcd & 1 << bit_index
 		? JJY_BIT_1
 		: JJY_BIT_0;
 }
@@ -64,7 +62,7 @@ t_jjy_bit get_jjy_bit(struct tm *tm, int index)
 // GCC extension (https://gcc.gnu.org/onlinedocs/gcc/Case-Ranges.html)
 #define CASE(START, END, BCD) \
 	case START ... END: \
-		return get_jjy_bit_from_bcd(BCD, index, END)
+		return get_jjy_bit_from_bcd(BCD, END - index)
 
 	// Minutes
 	CASE(M01_ST, M01_ED, get_bcd(tm->tm_min, 0));
