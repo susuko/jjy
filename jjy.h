@@ -1,6 +1,10 @@
 #ifndef _JJY_H
 #define _JJY_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // JJY indexes (https://en.wikipedia.org/wiki/JJY)
 // Marker
 #define ST_MK 0
@@ -46,5 +50,9 @@ typedef enum e_jjy_bit {
 } t_jjy_bit;
 
 t_jjy_bit get_jjy_bit(struct tm *tm, int index);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
