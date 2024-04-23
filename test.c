@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "jjy.h"
@@ -18,6 +19,11 @@ int test(time_t time, char *expect)
 
 int main(void)
 {
+	// Set time zone to JST
+	// (https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html)
+	setenv("TZ", "JST-9", 1);
+	tzset();
+
 	int result = 1;
 
 	result &= test(         0, "200000000200000100120000000002000100000200111000021000000002"); // 1970-01-01T00:00:00Z
